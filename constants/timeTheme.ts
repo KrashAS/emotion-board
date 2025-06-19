@@ -20,7 +20,7 @@ export const TIME_THEME_CONFIGS: TimeThemeConfig[] = [
         style: "bg-gradient-to-br from-indigo-400 to-purple-600 text-white",
     },
     {
-        label: "night",
+        label: "midnight",
         range: [22, 23],
         style: "bg-gradient-to-br from-gray-800 to-black text-white",
     },

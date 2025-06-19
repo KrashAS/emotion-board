@@ -1,4 +1,4 @@
-type TimeOfDay = "morning" | "day" | "evening" | "night";
+type TimeOfDay = "morning" | "day" | "evening" | "midnight" | "night";
 
 interface TimeThemeConfig {
     label: TimeOfDay;
