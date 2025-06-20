@@ -51,7 +51,7 @@
     {
         "id": "8",
         "type": "wonder",
-        "name": "Захоплення",
+        "name": "Дивина",
         "color": "bg-pink-300 text-black",
         "icon": "🤩"
     },
@@ -89,5 +89,19 @@
         "name": "Сльози",
         "color": "bg-cyan-200 text-black",
         "icon": "😭"
+    },
+    {
+        "id": "14",
+        "type": "exhausted",
+        "name": "Недоспав",
+        "color": "bg-gray-400 text-white",
+        "icon": "😴"
+    },
+    {
+        "id": "15",
+        "type": "sick",
+        "name": "Хворий",
+        "color": "bg-green-300 text-black",
+        "icon": "🤒"
     }
 ]

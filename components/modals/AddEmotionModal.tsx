@@ -8,11 +8,15 @@ import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import IconClose from '../icons/IconClose';
 
-const EmotionModal = observer(() => {
-    const { isOpen, selectedEmotionId, comment, close, setEmotion, setComment } = modalStore;
-    const [error, setError] = useState('');
+const AddEmotionModal = observer(() => {
+    const {
+        modalState: { type, selectedEmotionId = null, comment = '' },
+        setSelectedEmotion,
+        setComment,
+        close,
+    } = modalStore;
 
-    if (!isOpen) return null;
+    const [error, setError] = useState('');
 
     const handleSubmit = () => {
         if (!selectedEmotionId) {
@@ -29,12 +33,13 @@ const EmotionModal = observer(() => {
         setError('');
     };
 
+    if (type !== 'addEmotion') return null;
     return (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-3">
             <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl w-full max-w-md relative shadow-lg">
                 <button
                     onClick={close}
-                    className="absolute top-3 right-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+                    className="absolute top-3 right-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white cursor-pointer"
                 >
                     <IconClose />
                 </button>
@@ -45,7 +50,7 @@ const EmotionModal = observer(() => {
                     {emotions.map(({ type, name, icon }) => (
                         <button
                             key={type}
-                            onClick={() => setEmotion(type)}
+                            onClick={() => setSelectedEmotion(type)}
                             className={`p-2 rounded-xl border ${selectedEmotionId === type
                                 ? 'border-blue-500 bg-blue-100 dark:bg-blue-900'
                                 : 'border-transparent'
@@ -70,7 +75,7 @@ const EmotionModal = observer(() => {
 
                 <button
                     onClick={handleSubmit}
-                    className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+                    className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 cursor-pointer"
                 >
                     Додати
                 </button>
@@ -79,4 +84,4 @@ const EmotionModal = observer(() => {
     );
 });
 
-export default EmotionModal;
+export default AddEmotionModal;

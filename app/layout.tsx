@@ -1,3 +1,4 @@
+import ModalRoot from "@/components/modals/ModalRoot";
 import { StoreProvider } from "@/providers/MobXProvider";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
@@ -25,6 +26,7 @@ export default function RootLayout({
                 className={`${robotoSans.className}  antialiased`}
             >
                 <StoreProvider>
+                    <ModalRoot />
                     {children}
                 </StoreProvider>
             </body>
