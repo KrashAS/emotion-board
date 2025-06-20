@@ -88,7 +88,7 @@ export default function EmotionCard({
                 {!isMobile && (
                     <button
                         onClick={() => emotionStore.removeEmotion(id)}
-                        className="text-sm text-red-500 hover:underline"
+                        className="px-3 py-1 rounded-md bg-white/80 text-red-600 text-sm font-medium shadow hover:bg-white hover:scale-105 transition cursor-pointer"
                     >
                         Видалити
                     </button>

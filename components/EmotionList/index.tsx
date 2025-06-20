@@ -22,6 +22,7 @@ import {
 } from '@dnd-kit/sortable';
 
 import { useState } from 'react';
+import EmotionEmpty from './EmotionEmpty';
 
 const EmotionList = observer(() => {
     const emotionStore = useEmotionStore();
@@ -52,6 +53,12 @@ const EmotionList = observer(() => {
         const updated = arrayMove(emotionStore.emotions, oldIndex, newIndex);
         emotionStore.setEmotions(updated);
     };
+
+    if (emotionStore.emotions.length === 0) {
+        return (
+            <EmotionEmpty />
+        );
+    }
 
     return (
         <section className="p-4">

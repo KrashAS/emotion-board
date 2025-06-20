@@ -1,16 +1,49 @@
-'use client'
-import { modalStore } from "@/stores/modalStore"
+'use client';
 
-const HeaderHome = () => {
-    return (
-        <header className="flex justify-between items-center mb-6">
-            <h1 className="text-3xl font-bold">Дошка емоцій</h1>
-            <button className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition cursor-pointer"
-                onClick={() => modalStore.open()}>
+import { useEmotionStore } from "@/hooks/useEmotionStore";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { modalStore } from "@/stores/modalStore";
+import { observer } from "mobx-react-lite";
+
+const HeaderHome = observer(() => {
+    const emotionStore = useEmotionStore();
+    const isMobile = useIsMobile();
+
+    const clearAll = () => {
+        modalStore.open('confirmClear');
+    };
+
+    const hasEmotions = emotionStore.emotions.length > 0;
+
+    const ButtonGroup = () => (
+        <div className="flex space-x-3 justify-between mt-4 md:mt-0">
+            <button
+                onClick={() => modalStore.open("addEmotion")}
+                className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 cursor-pointer transition"
+            >
                 Додати емоцію
             </button>
-        </header>
-    )
-}
 
-export default HeaderHome
+            <button
+                onClick={clearAll}
+                disabled={!hasEmotions}
+                className="px-4 py-2 rounded-lg font-semibold transition bg-red-500 cursor-pointer text-white hover:bg-red-600 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
+            >
+                Очистити всі
+            </button>
+        </div>
+    );
+
+    return (
+        <header className="mb-6">
+            <div className="flex justify-between items-center flex-col md:flex-row gap-4 md:gap-0">
+                <h1 className="text-3xl font-bold">Дошка емоцій</h1>
+                {!isMobile && <ButtonGroup />}
+            </div>
+
+            {isMobile && <ButtonGroup />}
+        </header>
+    );
+});
+
+export default HeaderHome;

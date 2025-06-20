@@ -1,32 +1,48 @@
 import { makeAutoObservable } from "mobx";
 
+export type ModalType = "addEmotion" | "confirmClear" | null;
+
+interface ModalState {
+    type: ModalType;
+    selectedEmotionId?: string | null;
+    comment?: string;
+}
+
 class ModalStore {
-    isOpen = false;
-    selectedEmotionId: string | null = null;
-    comment = "";
+    modalState: ModalState = {
+        type: null,
+        selectedEmotionId: null,
+        comment: "",
+    };
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    open() {
-        this.isOpen = true;
-        this.selectedEmotionId = null;
-        this.comment = "";
-    }
-
-    close = () => {
-        this.isOpen = false;
-        this.selectedEmotionId = null;
-        this.comment = "";
+    open = (type: ModalType, params?: Partial<ModalState>) => {
+        this.modalState.type = type;
+        if (params?.selectedEmotionId !== undefined) {
+            this.modalState.selectedEmotionId = params.selectedEmotionId;
+        }
+        if (params?.comment !== undefined) {
+            this.modalState.comment = params.comment;
+        }
     };
 
-    setEmotion = (id: string) => {
-        this.selectedEmotionId = id;
+    close = () => {
+        this.modalState = {
+            type: null,
+            selectedEmotionId: null,
+            comment: "",
+        };
     };
 
     setComment = (text: string) => {
-        this.comment = text;
+        this.modalState.comment = text;
+    };
+
+    setSelectedEmotion = (id: string | null) => {
+        this.modalState.selectedEmotionId = id;
     };
 }
 
