@@ -1,22 +1,92 @@
 'use client';
 
-import { useEmotionStore } from "@/hooks/useEmotionStore";
-import { observer } from "mobx-react-lite";
-import EmotionCard from "./EmotionCard";
+import { useEmotionStore } from '@/hooks/useEmotionStore';
+import { useIsMobile } from '@/hooks/useIsMobile';
+import { observer } from 'mobx-react-lite';
+import EmotionCard from './EmotionCard';
+
+import {
+    closestCenter,
+    DndContext,
+    DragEndEvent,
+    DragStartEvent,
+    PointerSensor,
+    useSensor,
+    useSensors
+} from '@dnd-kit/core';
+
+import {
+    arrayMove,
+    SortableContext,
+    verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+
+import { useState } from 'react';
 
 const EmotionList = observer(() => {
-    const { emotions: userEmotions } = useEmotionStore();
+    const emotionStore = useEmotionStore();
+    const isMobile = useIsMobile();
+    const [activeId, setActiveId] = useState<string | null>(null);
+
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                delay: 100,
+                tolerance: 5,
+            },
+        })
+    );
+
+    const handleDragStart = (event: DragStartEvent) => {
+        setActiveId(event.active.id as string);
+    };
+
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+        setActiveId(null);
+        if (!over || active.id === over.id) return;
+
+        const oldIndex = emotionStore.emotions.findIndex(e => e.id === active.id);
+        const newIndex = emotionStore.emotions.findIndex(e => e.id === over.id);
+
+        const updated = arrayMove(emotionStore.emotions, oldIndex, newIndex);
+        emotionStore.setEmotions(updated);
+    };
 
     return (
         <section className="p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {userEmotions.map(emotion => (
-                    <EmotionCard key={emotion.id} {...emotion} />
-                ))}
-            </div>
+            {isMobile ? (
+                <DndContext
+                    sensors={sensors}
+                    collisionDetection={closestCenter}
+                    onDragStart={handleDragStart}
+                    onDragEnd={handleDragEnd}
+                >
+                    <SortableContext
+                        items={emotionStore.emotions.map(e => e.id)}
+                        strategy={verticalListSortingStrategy}
+                    >
+                        <div className="flex flex-col gap-4">
+                            {emotionStore.emotions.map(e => (
+                                <EmotionCard
+                                    key={e.id}
+                                    {...e}
+                                    isMobile
+                                    isDragging={activeId === e.id}
+                                />
+                            ))}
+                        </div>
+                    </SortableContext>
+                </DndContext>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {emotionStore.emotions.map(e => (
+                        <EmotionCard key={e.id} {...e} isMobile={false} />
+                    ))}
+                </div>
+            )}
         </section>
     );
 });
 
 export default EmotionList;
-

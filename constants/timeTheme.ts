@@ -22,6 +22,6 @@ export const TIME_THEME_CONFIGS: TimeThemeConfig[] = [
     {
         label: "midnight",
         range: [22, 23],
-        style: "bg-gradient-to-br from-gray-800 to-black text-white",
+        style: "bg-gradient-to-br from-slate-700 to-black text-white",
     },
 ];

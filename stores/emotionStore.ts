@@ -16,9 +16,14 @@ export class EmotionStore {
         this.save();
     }
 
+    setEmotions(newList: EmotionRecord[]) {
+        this.emotions = newList;
+        localStorage.setItem("emotion_records", JSON.stringify(newList));
+    }
+
     removeEmotion(id: string) {
         this.emotions = this.emotions.filter((e) => e.id !== id);
-        this.save();
+        localStorage.setItem("emotion_records", JSON.stringify(this.emotions));
     }
 
     moveEmotion(fromIndex: number, toIndex: number) {
