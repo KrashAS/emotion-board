@@ -1,0 +1,93 @@
+[
+    {
+        "id": "1",
+        "type": "joy",
+        "name": "Радість",
+        "color": "bg-yellow-300 text-black",
+        "icon": "😊"
+    },
+    {
+        "id": "2",
+        "type": "sadness",
+        "name": "Смуток",
+        "color": "bg-blue-300 text-black",
+        "icon": "😢"
+    },
+    {
+        "id": "3",
+        "type": "anger",
+        "name": "Злість",
+        "color": "bg-red-400 text-white",
+        "icon": "😠"
+    },
+    {
+        "id": "4",
+        "type": "rage",
+        "name": "Лють",
+        "color": "bg-red-700 text-white",
+        "icon": "🤬"
+    },
+    {
+        "id": "5",
+        "type": "surprise",
+        "name": "Подив",
+        "color": "bg-purple-300 text-black",
+        "icon": "😲"
+    },
+    {
+        "id": "6",
+        "type": "calm",
+        "name": "Спокій",
+        "color": "bg-green-200 text-black",
+        "icon": "😌"
+    },
+    {
+        "id": "7",
+        "type": "guilt",
+        "name": "Вина",
+        "color": "bg-gray-400 text-white",
+        "icon": "😔"
+    },
+    {
+        "id": "8",
+        "type": "wonder",
+        "name": "Захоплення",
+        "color": "bg-pink-300 text-black",
+        "icon": "🤩"
+    },
+    {
+        "id": "9",
+        "type": "fear",
+        "name": "Страх",
+        "color": "bg-indigo-700 text-white",
+        "icon": "😱"
+    },
+    {
+        "id": "10",
+        "type": "boredom",
+        "name": "Нудьга",
+        "color": "bg-gray-300 text-black",
+        "icon": "🥱"
+    },
+    {
+        "id": "11",
+        "type": "hope",
+        "name": "Надія",
+        "color": "bg-emerald-300 text-black",
+        "icon": "🙏"
+    },
+    {
+        "id": "12",
+        "type": "love",
+        "name": "Любов",
+        "color": "bg-rose-300 text-black",
+        "icon": "❤️"
+    },
+    {
+        "id": "13",
+        "type": "tears",
+        "name": "Сльози",
+        "color": "bg-cyan-200 text-black",
+        "icon": "😭"
+    }
+]
