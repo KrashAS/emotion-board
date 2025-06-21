@@ -17,6 +17,7 @@ const AddEmotionModal = observer(() => {
     } = modalStore;
 
     const [error, setError] = useState('');
+    const [activeAnimation, setActiveAnimation] = useState<string | null>(null);
 
     const handleSubmit = () => {
         if (!selectedEmotionId) {
@@ -35,7 +36,7 @@ const AddEmotionModal = observer(() => {
 
     if (type !== 'addEmotion') return null;
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 px-3">
+        <div className="fixed inset-0 bg-white/20 backdrop-blur-md flex items-center justify-center z-50 px-3">
             <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl w-full max-w-md relative shadow-lg">
                 <button
                     onClick={close}
@@ -50,11 +51,15 @@ const AddEmotionModal = observer(() => {
                     {emotions.map(({ type, name, icon }) => (
                         <button
                             key={type}
-                            onClick={() => setSelectedEmotion(type)}
-                            className={`p-2 rounded-xl border ${selectedEmotionId === type
+                            onClick={() => {
+                                setSelectedEmotion(type);
+                                setActiveAnimation(type);
+                                setTimeout(() => setActiveAnimation(null), 400);
+                            }}
+                            className={`p-2 rounded-xl border transition-transform duration-300 cursor-pointer ${selectedEmotionId === type
                                 ? 'border-blue-500 bg-blue-100 dark:bg-blue-900'
                                 : 'border-transparent'
-                                }`}
+                                } ${activeAnimation === type ? 'animate-zoom-up' : ''}`}
                         >
                             <span className="text-2xl">{icon}</span>
                             <div className="text-xs">{name}</div>

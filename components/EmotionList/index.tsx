@@ -29,14 +29,7 @@ const EmotionList = observer(() => {
     const isMobile = useIsMobile();
     const [activeId, setActiveId] = useState<string | null>(null);
 
-    const sensors = useSensors(
-        useSensor(PointerSensor, {
-            activationConstraint: {
-                delay: 100,
-                tolerance: 5,
-            },
-        })
-    );
+    const sensors = useSensors(useSensor(PointerSensor));
 
     const handleDragStart = (event: DragStartEvent) => {
         setActiveId(event.active.id as string);
@@ -61,7 +54,7 @@ const EmotionList = observer(() => {
     }
 
     return (
-        <section className="p-4">
+        <section className="py-4">
             {isMobile ? (
                 <DndContext
                     sensors={sensors}
