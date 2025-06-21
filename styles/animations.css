@@ -1,0 +1,16 @@
+@keyframes zoomUp {
+    0% {
+        transform: perspective(1000px) translateZ(0) scale(1);
+    }
+    50% {
+        transform: perspective(1000px) translateZ(64px) scale(1.15);
+    }
+    100% {
+        transform: perspective(1000px) translateZ(0) scale(1);
+    }
+}
+
+.animate-zoom-up {
+    animation: zoomUp 0.5s ease;
+    will-change: transform;
+}
