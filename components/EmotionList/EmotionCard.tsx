@@ -1,5 +1,6 @@
 import emotions from '@/data/emotions.json';
 import { useEmotionStore } from '@/hooks/useEmotionStore';
+import { isMobileDevice } from '@/utils/isMobileDevice';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useRef, useState } from 'react';
@@ -21,6 +22,7 @@ export default function EmotionCard({
     const emotionStore = useEmotionStore();
     const emotionData = emotions.find(e => e.type === emotion_id);
     const [isSwiped, setIsSwiped] = useState(false);
+    const isMobileDev = isMobileDevice();
 
     const {
         attributes,
@@ -35,6 +37,7 @@ export default function EmotionCard({
             transition: 'transform 150ms ease-in-out',
         }
         : undefined;
+
 
     const touchStartX = useRef(0);
     const touchStartY = useRef(0);
@@ -77,13 +80,13 @@ export default function EmotionCard({
             {...(isMobile ? { ...attributes, ...listeners } : {})}
             onTouchStart={isMobile ? handleTouchStart : undefined}
             onTouchMove={isMobile ? handleTouchMove : undefined}
-            onTouchEnd={isMobile ? handleTouchEnd : undefined}
+            onTouchEnd={handleTouchEnd}
             className={`rounded-xl p-4 shadow-md transition-all duration-150 ease-in-out ${isSwiped ? '-translate-x-full opacity-0' : ''} ${isDragging ? 'opacity-50 scale-95' : ''} ${emotionData.color} ${isMobile ? "cursor-grab" : ''} relative select-none`}
         >
             <div className="flex justify-between items-start">
                 <div className="text-4xl">{emotionData.icon}</div>
 
-                {!isMobile ? (
+                {!isMobileDev ? (
                     <button
                         onClick={() => emotionStore.removeEmotion(id)}
                         className="px-3 py-1 rounded-md bg-white/80 text-red-600 text-sm font-medium shadow hover:bg-white hover:scale-105 transition cursor-pointer"
