@@ -1,7 +1,7 @@
 'use client';
 
 import { emotionStore } from '@/stores/emotionStore';
-import { modalStore } from '@/stores/modalStore';
+import { modalEmotionStore } from '@/stores/modalEmotionStore';
 import { enableStaticRendering } from 'mobx-react-lite';
 import { ReactNode } from 'react';
 
@@ -9,7 +9,7 @@ enableStaticRendering(typeof window === 'undefined');
 
 export const stores = {
     emotionStore,
-    modalStore,
+    modalEmotionStore,
 };
 
 export const StoreProvider = ({ children }: { children: ReactNode }) => {

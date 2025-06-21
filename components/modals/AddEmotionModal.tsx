@@ -3,18 +3,18 @@
 import { MAX_COMMENT_LENGTH } from '@/constants/emotion';
 import emotions from '@/data/emotions.json';
 import { emotionStore } from '@/stores/emotionStore';
-import { modalStore } from '@/stores/modalStore';
+import { modalEmotionStore } from '@/stores/modalEmotionStore';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import IconClose from '../icons/IconClose';
 
 const AddEmotionModal = observer(() => {
     const {
-        modalState: { type, selectedEmotionId = null, comment = '' },
+        modalEmotionState: { type, selectedEmotionId = null, comment = '' },
         setSelectedEmotion,
         setComment,
         close,
-    } = modalStore;
+    } = modalEmotionStore;
 
     const [error, setError] = useState('');
     const [activeAnimation, setActiveAnimation] = useState<string | null>(null);

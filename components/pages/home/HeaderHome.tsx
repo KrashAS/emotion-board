@@ -2,7 +2,7 @@
 
 import { useEmotionStore } from "@/hooks/useEmotionStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { modalStore } from "@/stores/modalStore";
+import { modalEmotionStore } from "@/stores/modalEmotionStore";
 import { observer } from "mobx-react-lite";
 
 const HeaderHome = observer(() => {
@@ -10,7 +10,7 @@ const HeaderHome = observer(() => {
     const isMobile = useIsMobile();
 
     const clearAll = () => {
-        modalStore.open('confirmClear');
+        modalEmotionStore.open('confirmClear');
     };
 
     const hasEmotions = emotionStore.emotions.length > 0;
@@ -18,7 +18,7 @@ const HeaderHome = observer(() => {
     const ButtonGroup = () => (
         <div className="flex space-x-3 justify-between mt-4 md:mt-0">
             <button
-                onClick={() => modalStore.open("addEmotion")}
+                onClick={() => modalEmotionStore.open("addEmotion")}
                 className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 cursor-pointer transition"
             >
                 Додати емоцію
