@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Emotion Board
 
-## Getting Started
+**Emotion Board** is a simple, responsive, and interactive emotion tracking app built with **Next.js** and **MobX**. It allows users to log their emotions, leave short comments, and organize them through drag-and-drop. All data is stored locally in the browser.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### ✅ Core Functionality
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Add Emotion**  
+  - Click the **"Add Emotion"** button to open a modal
+  - Choose from a predefined set of emotions (Joy, Sadness, Anger, Surprise, Calm, etc.)
+  - Add a short comment
+  - Confirm to add a new emotion card to the board
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Delete Emotion**  
+  - On **desktop**: via the "Delete" button on each card  
+  - On **mobile**: swipe left to remove a card with animation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Display**  
+  - Each emotion is shown as a **card** with an icon, color background, name, and comment  
+  - On **desktop**: displayed in a grid layout  
+  - On **mobile**: displayed in a vertical list with **drag-and-drop** support
 
-## Learn More
+- **Persistence**  
+  - All emotions are saved to **Local Storage**
+  - Data is automatically restored when the page reloads
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🧰 Technical Requirements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Language**: TypeScript
+- **State management**: MobX
+- **Framework**: Next.js
+- **UI**: Tailwind CSS
+- **Fully responsive**: works on both desktop and mobile
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🎁 Additional Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ✅ Smooth **animations** when adding new emotions
+- ✅ **"Clear All"** button to remove all emotions at once
+- ✅ **Daytime-based theming**: background color changes depending on morning, day, or night
+
