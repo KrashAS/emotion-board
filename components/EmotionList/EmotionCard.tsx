@@ -3,6 +3,8 @@ import { useEmotionStore } from '@/hooks/useEmotionStore';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { useRef, useState } from 'react';
+import IconAlign from '../icons/IconAlign';
+import IconDelete from '../icons/IconDelete';
 
 type Props = EmotionRecord & {
     isMobile: boolean;
@@ -76,11 +78,7 @@ export default function EmotionCard({
             onTouchStart={isMobile ? handleTouchStart : undefined}
             onTouchMove={isMobile ? handleTouchMove : undefined}
             onTouchEnd={isMobile ? handleTouchEnd : undefined}
-            className={`rounded-xl p-4 shadow-md transition-all duration-150 ease-in-out
-        ${isSwiped ? '-translate-x-full opacity-0' : ''}
-        ${isDragging ? 'opacity-50 scale-95' : ''}
-        ${emotionData.color}
-        relative select-none`}
+            className={`rounded-xl p-4 shadow-md transition-all duration-150 ease-in-out ${isSwiped ? '-translate-x-full opacity-0' : ''} ${isDragging ? 'opacity-50 scale-95' : ''} ${emotionData.color} ${isMobile ? "cursor-grab" : ''} relative select-none`}
         >
             <div className="flex justify-between items-start">
                 <div className="text-4xl">{emotionData.icon}</div>
@@ -93,9 +91,9 @@ export default function EmotionCard({
                         Видалити
                     </button>
                 ) : <div
-                    className="absolute top-2 right-2 w-5 h-5 cursor-grab"
+                    className="absolute top-2 right-2 w-8 h-5 cursor-grab flex items-center text-red-900"
                     title="Перетягнути"
-                >
+                ><IconAlign /><IconDelete />
                 </div>}
             </div>
 

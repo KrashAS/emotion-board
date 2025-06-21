@@ -19,6 +19,12 @@ const AddEmotionModal = observer(() => {
     const [error, setError] = useState('');
     const [activeAnimation, setActiveAnimation] = useState<string | null>(null);
 
+    const onClickIcon = (value: string) => {
+        setSelectedEmotion(value);
+        setActiveAnimation(value);
+        setTimeout(() => setActiveAnimation(null), 400);
+    }
+
     const handleSubmit = () => {
         if (!selectedEmotionId) {
             setError('Оберіть емоцію');
@@ -51,11 +57,7 @@ const AddEmotionModal = observer(() => {
                     {emotions.map(({ type, name, icon }) => (
                         <button
                             key={type}
-                            onClick={() => {
-                                setSelectedEmotion(type);
-                                setActiveAnimation(type);
-                                setTimeout(() => setActiveAnimation(null), 400);
-                            }}
+                            onClick={() => onClickIcon(type)}
                             className={`p-2 rounded-xl border transition-transform duration-300 cursor-pointer ${selectedEmotionId === type
                                 ? 'border-blue-500 bg-blue-100 dark:bg-blue-900'
                                 : 'border-transparent'
