@@ -1,7 +1,5 @@
 import { makeAutoObservable } from "mobx";
 
-export type ModalType = "addEmotion" | "confirmClear" | null;
-
 interface ModalState {
     type: ModalType;
     selectedEmotionId?: string | null;
