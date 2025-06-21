@@ -1,28 +1,28 @@
 "use client"
-import { modalStore } from "@/stores/modalStore";
+import { modalEmotionStore } from "@/stores/modalEmotionStore";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import AddEmotionModal from "./AddEmotionModal";
 import ConfirmClearModal from "./ConfirmClearModal";
 
 const ModalRoot = observer(() => {
-    const { modalState } = modalStore;
+    const { modalEmotionState } = modalEmotionStore;
 
     useEffect(() => {
         const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 
-        if (modalState.type) {
+        if (modalEmotionState.type) {
             document.body.style.paddingRight = `${scrollBarWidth}px`;
             document.body.style.overflowY = 'hidden';
         } else {
             document.body.style.paddingRight = '';
             document.body.style.overflowY = 'auto';
         }
-    }, [modalState.type]);
+    }, [modalEmotionState.type]);
 
-    if (modalState.type === null) return null;
+    if (modalEmotionState.type === null) return null;
 
-    switch (modalState.type) {
+    switch (modalEmotionState.type) {
         case "addEmotion":
             return <AddEmotionModal />;
         case "confirmClear":

@@ -1,4 +1,4 @@
-import { modalStore } from '@/stores/modalStore'
+import { modalEmotionStore } from '@/stores/modalEmotionStore'
 
 const EmotionEmpty = () => {
     return (
@@ -7,7 +7,7 @@ const EmotionEmpty = () => {
                 Поки що немає жодної емоції.
             </p>
             <button
-                onClick={() => modalStore.open("addEmotion")}
+                onClick={() => modalEmotionStore.open("addEmotion")}
                 className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer font-semibold"
             >
                 Додати першу емоцію

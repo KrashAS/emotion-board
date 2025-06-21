@@ -1,13 +1,13 @@
 'use client';
 
 import { emotionStore } from '@/stores/emotionStore';
-import { modalStore } from '@/stores/modalStore';
+import { modalEmotionStore } from '@/stores/modalEmotionStore';
 import { observer } from 'mobx-react-lite';
 
 const ConfirmClearModal = observer(() => {
-    const { modalState, close } = modalStore;
+    const { modalEmotionState, close } = modalEmotionStore;
 
-    if (modalState.type !== 'confirmClear') return null;
+    if (modalEmotionState.type !== 'confirmClear') return null;
 
     const handleConfirm = () => {
         emotionStore.setEmotions([]);
